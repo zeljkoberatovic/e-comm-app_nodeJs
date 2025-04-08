@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "",
+  "author": "Zeljko Beratovic",
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "express": "^5.1.0",
     "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }

@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
 
+const categoryRoutes = require("./routes/category")
+
 // Middleware za parsiranje JSON tela
 app.use(express.json());
 
@@ -11,6 +13,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Server Running!!!!');
 });
+
+app.use("/category", categoryRoutes);
 
 // Konektovanje sa bazom
 async function connectDb() {
@@ -20,7 +24,7 @@ async function connectDb() {
     });
     console.log("✅ Povezan sa MongoDB!");
   } catch (err) {
-    console.error("❌ Greška pri povezivanju sa bazom:", err.message);
+    console.error("❌ Greška pri povezivanju sa bazom:", err.message); //Handlovanje greske
   }
 }
 
