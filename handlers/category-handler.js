@@ -37,7 +37,7 @@ const updateCategory = async (req, res, next) => {
     );
 
     if (!updatedCategory) {
-      return res.status(404).json({ message: "Category not found" });
+      return res.status(404).json({ message: "Kategorija nije pronađena." });
     }
 
     res.status(200).json(updatedCategory);
@@ -64,7 +64,7 @@ const getCategoryById = async (req, res, next) => {
     const category = await Category.findById(categoryId);
     
     if (!category) {
-      return res.status(404).json({ message: "Category not found" });
+      return res.status(404).json({ message: "Kategorija nije pronađena." });
     }
 
     res.status(200).json(category);
@@ -81,10 +81,10 @@ const deleteCategory = async (req, res, next) => {
     const deletedCategory = await Category.findByIdAndDelete(categoryId);
 
     if (!deletedCategory) {
-      return res.status(404).json({ message: "Category not found" });
+      return res.status(404).json({ message: "Kategorija nije pronađena." });
     }
 
-    res.status(200).json({ message: "Category successfully deleted" });
+    res.status(200).json({ message: "Kategorija nije pronađena." });
   } catch (err) {
     next(err); // Prosleđivanje greške na globalni error handler
   }

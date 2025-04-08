@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
+const cors = require("cors");
 
 // Importovanje ruta
 const categoryRoutes = require("./routes/category");
 
 // Middleware za parsiranje JSON tela
 app.use(express.json());
+app.use(cors());
 
 // Test ruta
 app.get('/', (req, res) => {
