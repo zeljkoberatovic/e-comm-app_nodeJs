@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
-const orderShema = new mongoose.Schema({
 
-    date: Date,
-    items: Array(any),
-    status: Number,
-   
+const orderSchema = new mongoose.Schema({
+  date: { type: Date, default: Date.now },
+  items: [
+    {
+      productId: { type: mongoose.Schema.Types.ObjectId, ref: 'products' },
+      quantity: Number,
+      price: Number
+    }
+  ],
+  status: Number // ili 'status: { type: String, enum: ['pending', 'shipped', 'delivered'] }'
 });
 
-const Order = mongoose.model("orders", orderShema);
+const Order = mongoose.model("orders", orderSchema);
 module.exports = Order;
