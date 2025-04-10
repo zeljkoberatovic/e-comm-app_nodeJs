@@ -6,18 +6,20 @@ const cors = require("cors");
 
 // Importovanje ruta
 const categoryRoutes = require("./routes/category");
+const brandRoutes = require('./routes/brand-routes');
 
 // Middleware za parsiranje JSON tela
 app.use(express.json());
 app.use(cors());
 
+// Korišćenje ruta za kategorije
+app.use("/category", categoryRoutes);
+app.use('/api/brands', brandRoutes);
+
 // Test ruta
 app.get('/', (req, res) => {
   res.send('Server Running!!!!');
 });
-
-// Korišćenje ruta za kategorije
-app.use("/category", categoryRoutes);
 
 // Konektovanje sa bazom
 async function connectDb() {
