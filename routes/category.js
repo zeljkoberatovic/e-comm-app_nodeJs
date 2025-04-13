@@ -7,7 +7,9 @@ const { createCategory, updateCategory, getCategories, getCategoryById, deleteCa
 
 // Validacija za kreiranje kategorije
 const categoryValidation = [
-  body('name').notEmpty().withMessage('Ime je obavezno').isLength({ max: 100 }).withMessage("Ime mora biti kraće od 100 karaktera")
+  body('name')
+    .notEmpty().withMessage('Ime je obavezno')
+    .isLength({ max: 100 }).withMessage("Ime mora biti kraće od 100 karaktera")
 ];
 
 // Kreiranje nove kategorije

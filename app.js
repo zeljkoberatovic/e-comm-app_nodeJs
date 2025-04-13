@@ -6,7 +6,8 @@ const cors = require("cors");
 
 // Importovanje ruta
 const categoryRoutes = require("./routes/category");
-const brandRoutes = require('./routes/brand-routes');
+const brandRoutes = require('./routes/brand');
+const productRoutes = require('./routes/product');
 
 // Middleware za parsiranje JSON tela
 app.use(express.json());
@@ -14,7 +15,8 @@ app.use(cors());
 
 // Korišćenje ruta za kategorije
 app.use("/category", categoryRoutes);
-app.use('/api/brands', brandRoutes);
+app.use("/brand", brandRoutes);
+app.use("/product", productRoutes)
 
 // Test ruta
 app.get('/', (req, res) => {
@@ -29,7 +31,7 @@ async function connectDb() {
     });
     console.log("✅ Povezan sa MongoDB!");
   } catch (err) {
-    console.error("❌ Greška pri povezivanju sa bazom:", err.message); // Rukovanje greškom pri povezivanju
+    console.error("❌ Greška pri povezivanju sa bazom:", err.message); 
   }
 }
 
@@ -38,8 +40,8 @@ connectDb();
 
 // Globalni error handler za sve rute
 app.use((err, req, res, next) => {
-  console.error(err); // Logovanje greške na konzolu
-  res.status(500).json({ error: 'Internal Server Error' });
+  console.error(err.stack); // Logovanje greške na konzolu
+  res.status(500).json({ error: 'Došlo je do greške na serveru. Pokušajte ponovo...' });
 });
 
 // Pokreni server
