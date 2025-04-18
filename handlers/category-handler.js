@@ -84,7 +84,7 @@ const deleteCategory = async (req, res, next) => {
       return res.status(404).json({ message: "Kategorija nije pronađena." });
     }
 
-    res.status(200).json({ message: "Kategorija nije pronađena." });
+    res.status(200).json({ message: "Proizvod je uspešno obrisan." });
   } catch (err) {
     next(err); // Prosleđivanje greške na globalni error handler
   }

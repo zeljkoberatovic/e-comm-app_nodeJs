@@ -8,14 +8,14 @@ const { createProduct, updateProduct, getProducts, getProductById, deleteProduct
 // Validacija za kreiranje
 const createProductValidation = [
   body('name').notEmpty().withMessage('Naziv je obavezan'),
-  body('Price').isFloat({ gt: 0 }).withMessage('Cena mora biti broj veći od 0'),
+  body('price').isFloat({ gt: 0 }).withMessage('Cena mora biti broj veći od 0'),
   body('categoryId').isMongoId().withMessage('Neispravan ID kategorije')
 ];
 
 // Validacija za ažuriranje (sva polja opciona)
 const updateProductValidation = [
   body('name').optional().notEmpty().withMessage('Naziv ne sme biti prazan'),
-  body('Price').optional().isFloat({ gt: 0 }).withMessage('Cena mora biti broj veći od 0'),
+  body('price').optional().isFloat({ gt: 0 }).withMessage('Cena mora biti broj veći od 0'),
   body('categoryId').optional().isMongoId().withMessage('Neispravan ID kategorije')
 ];
 

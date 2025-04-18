@@ -15,7 +15,7 @@ const createProduct = async (req, res, next) => {
       name: productData.name,
       shortDescription: productData.shortDescription,
       description: productData.description,
-      Price: productData.Price,
+      price: productData.price,
       discount: productData.discount,
       images: productData.images,
       categoryId: productData.categoryId
@@ -41,7 +41,7 @@ const updateProduct = async (req, res, next) => {
         name: newValues.name,
         shortDescription: newValues.shortDescription,
         description: newValues.description,
-        Price: newValues.Price,
+        price: newValues.price,
         discount: newValues.discount,
         images: newValues.images,
         categoryId: newValues.categoryId
