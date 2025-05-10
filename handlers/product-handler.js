@@ -62,7 +62,7 @@ const updateProduct = async (req, res, next) => {
 // Dohvati sve proizvode
 const getProducts = async (req, res, next) => {
   try {
-    const products = await Product.find().populate('categoryId');
+    const products = await Product.find().populate('categoryId', 'name');
     res.status(200).json(products);
   } catch (err) {
     next(err);
@@ -74,7 +74,7 @@ const getProductById = async (req, res, next) => {
   const productId = req.params.id;
 
   try {
-    const product = await Product.findById(productId).populate('categoryId');
+    const product = await Product.findById(productId).populate('categoryId', 'name');
 
     if (!product) {
       return res.status(404).json({ message: "Proizvod nije pronađen." });
@@ -103,4 +103,28 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
-module.exports = { createProduct, updateProduct, getProducts, getProductById, deleteProduct };
+// Dohvati istaknute proizvode
+const getFeaturedProducts = async (req, res, next) => {
+  try {
+    const featuredProducts = await Product.find({ isFeatured: true }).populate('categoryId', 'name');
+    res.status(200).json(featuredProducts);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// Dohvati nove proizvode
+const getNewProducts = async (req, res, next) => {
+  try {
+    const newProducts = await Product.find({ isNewProduct: true }).populate('categoryId', 'name');
+    res.status(200).json(newProducts);
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
+
+module.exports = { createProduct, updateProduct, getProducts, getProductById,
+                         deleteProduct, getFeaturedProducts, getNewProducts };

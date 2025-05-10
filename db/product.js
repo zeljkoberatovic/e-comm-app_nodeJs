@@ -7,7 +7,9 @@ const productSchema = new mongoose.Schema({
   price: Number,
   discount: Number,
   images: [String],
-  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }
+  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
+  isFeatured: Boolean,
+  isNewProduct: Boolean
 },
 { timestamps: true }
 );
