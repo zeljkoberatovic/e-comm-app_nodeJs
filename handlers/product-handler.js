@@ -1,7 +1,6 @@
 const Product = require("./../db/product");
 const { validationResult } = require('express-validator');
 
-// Kreiranje novog proizvoda
 const createProduct = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -18,7 +17,9 @@ const createProduct = async (req, res, next) => {
       price: productData.price,
       discount: productData.discount,
       images: productData.images,
-      categoryId: productData.categoryId
+      categoryId: productData.categoryId,
+      isFeatured: productData.isFeatured || false,
+      isNewProduct: productData.isNewProduct || false
     });
 
     const savedProduct = await newProduct.save();
@@ -28,6 +29,7 @@ const createProduct = async (req, res, next) => {
     next(err);
   }
 };
+
 
 // Ažuriranje postojećeg proizvoda po ID-u
 const updateProduct = async (req, res, next) => {
