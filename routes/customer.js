@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require('../db/product'); 
 
 // Ruta za nove proizvode
-router.get("/home/new-products", async (req, res) => {
+router.get("/new-products", async (req, res) => {
   try {
     const newProducts = await Product.find({ isNewProduct: true }); 
     res.json(newProducts);
@@ -13,7 +13,7 @@ router.get("/home/new-products", async (req, res) => {
 });
 
 // Ruta za istaknute proizvode
-router.get("/home/featured-products", async (req, res) => {
+router.get("/featured-products", async (req, res) => {
   try {
     const featuredProducts = await Product.find({ isFeatured: true });
     res.json(featuredProducts);
