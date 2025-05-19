@@ -8,7 +8,9 @@ const cors = require("cors");
 const categoryRoutes = require("./routes/category");
 const brandRoutes = require('./routes/brand');
 const productRoutes = require('./routes/product');
-const cusstomerRoutes = require('./routes/customer');
+const customerRoutes = require('./routes/customer');
+const authRoutes = require("./routes/auth");
+
 
 // Middleware za parsiranje JSON tela
 app.use(express.json());
@@ -18,7 +20,8 @@ app.use(cors());
 app.use("/category", categoryRoutes);
 app.use("/brand", brandRoutes);
 app.use("/product", productRoutes);
-app.use("/customer", cusstomerRoutes);
+app.use("/customer", customerRoutes);
+app.use("/auth", authRoutes);
 
 // Test ruta
 app.get('/', (req, res) => {
