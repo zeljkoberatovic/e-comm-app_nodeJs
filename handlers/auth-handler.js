@@ -1,9 +1,10 @@
 const User = require("./../db/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
-// Tajna za JWT — obavezno prebaci u .env fajl u stvarnoj aplikaciji
-const JWT_SECRET = "tajna_lozinka";
+// Tajna za JWT
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Registracija korisnika
 async function registerUser(model) {
@@ -17,7 +18,7 @@ async function registerUser(model) {
   const user = new User({
     name: model.name,
     email: model.email,
-    password: hashPassword, // ispravno hashovana lozinka
+    password: hashPassword,
   });
 
   await user.save();
@@ -25,7 +26,7 @@ async function registerUser(model) {
 
 // Login korisnika
 async function loginUser(model) {
-  const user = await User.findOne({ email: model.email }); // KORISTI findOne, NE find
+  const user = await User.findOne({ email: model.email }); 
   if (!user) {
     throw new Error("Korisnik nije pronađen.");
   }
@@ -44,7 +45,7 @@ async function loginUser(model) {
     },
     JWT_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: "1000d",
     }
   );
 
